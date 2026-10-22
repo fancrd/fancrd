@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fancrd — Preview</title>
+  <meta name="description" content="Fancrd - Your digital fan passport. Log every game, rate every venue, collect every badge.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="../logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bungee&family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="preview-bar">Preview build · sample data · accounts and saves stay in this browser only</div>
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="#/" aria-label="Fancrd home">
+        <img src="../logo.png" alt="">
+        <span>FANCRD</span>
+      </a>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false">☰</button>
+      <nav class="main-nav" aria-label="Main">
+        <a href="#/profile" data-nav="profile">Profile</a>
+        <a href="#/rankings" data-nav="rankings">Rankings</a>
+        <a href="#/venues" data-nav="venues">Venues</a>
+        <a href="#/passport" data-nav="passport">Passport</a>
+        <span class="nav-auth"></span>
+        <a class="btn btn--primary btn--sm" href="#/log">+ Log</a>
+      </nav>
+      <div class="search">
+        <input type="search" placeholder="Search venues, teams, fans" aria-label="Search">
+        <div class="search__results" hidden></div>
+      </div>
+    </div>
+  </header>
+  <main id="app" class="wrap"></main>
+  <footer class="site-footer">
+    <div class="wrap footer-row">
+      <span>© 2026 Fancrd · Visit. Watch it. Fancrd it.</span>
+      <button class="link" id="reset-preview" type="button">Reset preview data</button>
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
