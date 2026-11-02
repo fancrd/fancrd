@@ -3,6 +3,7 @@ import { VENUES, TEAMS } from '../data/venues.js';
 import { communityRating } from '../stats.js';
 import { esc, stars, iconSvg, teamChip } from '../components/ui.js';
 import { ticketStub, bindStubs } from '../components/stub.js';
+import { waitlistForm, bindWaitlist } from '../components/waitlist.js';
 
 // Sample friend activity for the feed
 const ACTIVITY = [
@@ -25,16 +26,17 @@ export function renderHome(root) {
     <div class="hero__copy">
       <h1>Visit. Watch it. <span class="red">Fancrd it.</span></h1>
       <p class="lead">Your seat. Your card. Log every game you've been to, rate every stadium, and collect badges from Lambeau to the Rose Bowl.</p>
+      ${isSignedIn() ? '' : waitlistForm()}
       <div class="hero__cta">
         ${isSignedIn()
           ? '<a class="btn btn--primary" href="#/log">Log a game</a><a class="btn btn--ghost" href="#/profile">View my Fancrd</a>'
-          : '<a class="btn btn--primary" href="#/join">Create your Fancrd</a><a class="btn btn--ghost" href="#/profile">See a sample profile</a>'}
+          : '<a class="btn btn--ghost" href="#/profile">See a sample profile</a>'}
       </div>
       <p class="muted small">Launching with NFL · College Football · MLB</p>
     </div>
     <div class="hero__art" aria-hidden="true">
       <div class="hero__field"></div>
-      <img src="../logo.png" alt="">
+      <img src="logo.png" alt="">
     </div>
   </section>
 
@@ -80,4 +82,5 @@ export function renderHome(root) {
   </div>`;
 
   bindStubs(root, id => getLogs().find(l => l.id === id));
+  bindWaitlist(root);
 }

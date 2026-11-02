@@ -42,7 +42,7 @@ export function fancrdCard(user, stats, { size = '', flippable = true } = {}) {
       <div class="fc__face fc__front">
         <div class="fc__frame">
           ${front}
-          <img class="fc__logo" src="../logo.png" alt="">
+          <img class="fc__logo" src="logo.png" alt="">
           <div class="fc__team">${fav[0] ? esc(fav[0].short) : 'FAN'}</div>
           <div class="fc__banner"><span style="font-family:${font}">${esc(user.displayName)}</span></div>
         </div>

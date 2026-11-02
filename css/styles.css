@@ -404,3 +404,21 @@ main.wrap { flex: 1; padding-top: 28px; padding-bottom: 60px; }
   .statline b { font-size: 26px; }
   .map { height: 320px; }
 }
+
+/* Waitlist + social links */
+.waitlist { margin: 22px 0 6px; max-width: 520px; }
+.waitlist h2 { margin-bottom: 10px; }
+.waitlist__row { display: flex; gap: 10px; }
+.waitlist__row input[type="email"] { flex: 1; min-width: 0; background: var(--surface); color: var(--text); border: 1px solid var(--line); border-radius: 999px; padding: 11px 18px; font: inherit; }
+.waitlist__hp { position: absolute; left: -9999px; }
+.waitlist__status { margin: 10px 0 4px; font-weight: 600; }
+.waitlist__status:empty { display: none; }
+.waitlist__status.error { color: #ff8a8a; }
+.waitlist__status.success { color: #6fe09b; font-size: 18px; }
+.waitlist .small { margin-top: 10px; }
+.social-links { display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.social-links a { color: var(--muted); text-decoration: none; }
+.social-links a:hover { color: var(--text); text-decoration: underline; }
+@media (max-width: 560px) {
+  .waitlist__row { flex-direction: column; }
+}

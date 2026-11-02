@@ -1,7 +1,7 @@
-# Fancrd Stage 1 preview
+# Fancrd
 
-Clickable front end for Stage 1 (NFL, CFB, MLB). Served by GitHub Pages at
-`fancrd.com/preview/` while the homepage keeps the Coming Soon page.
+Clickable front end for Stage 1 (NFL, CFB, MLB). Served by GitHub Pages at the root of
+fancrd.com. `preview/` only redirects old links to the homepage.
 
 **Preview only:** sample data, and accounts, logs and photos are saved in the visitor's
 own browser (localStorage). Nothing is sent to a server and passwords are never stored.
@@ -14,7 +14,7 @@ From the repo root:
 python -m http.server 8123
 ```
 
-Then open http://localhost:8123/preview/
+Then open http://localhost:8123/
 
 ## Layout
 

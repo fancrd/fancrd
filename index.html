@@ -1,391 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fancrd - Coming Soon</title>
-    <meta name="description" content="Fancrd - Your digital fan passport. Coming soon.">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #0a0a0a 100%);
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow-x: hidden;
-        }
-
-        .container {
-            text-align: center;
-            padding: 40px;
-            max-width: 800px;
-        }
-
-        .logo-image {
-            width: 200px;
-            height: 200px;
-            margin-bottom: 30px;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        .brand-name {
-            font-size: 4rem;
-            font-weight: 900;
-            color: #ffffff;
-            letter-spacing: -3px;
-            margin-bottom: 20px;
-        }
-
-        .tagline {
-            font-size: 1.8rem;
-            color: #ff0000;
-            font-weight: 600;
-            margin-bottom: 50px;
-        }
-
-        .construction-container {
-            background: rgba(255, 0, 0, 0.1);
-            border: 2px solid #ff0000;
-            border-radius: 20px;
-            padding: 40px;
-            margin: 40px auto;
-            max-width: 600px;
-        }
-
-        .construction-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            50% {
-                transform: scale(1.1);
-                opacity: 0.8;
-            }
-        }
-
-        .construction-title {
-            font-size: 2rem;
-            color: #ff0000;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 20px;
-        }
-
-        .construction-subtitle {
-            font-size: 1.2rem;
-            color: #cccccc;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        .coming-soon {
-            font-size: 1rem;
-            color: #999;
-            margin-top: 60px;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .brand-name {
-                font-size: 2.5rem;
-            }
-
-            .tagline {
-                font-size: 1.3rem;
-            }
-
-            .logo-image {
-                width: 150px;
-                height: 150px;
-            }
-
-            .construction-title {
-                font-size: 1.5rem;
-            }
-
-            .construction-subtitle {
-                font-size: 1rem;
-            }
-
-            .construction-container {
-                padding: 30px 20px;
-            }
-        }
-
-        /* Waitlist */
-        .waitlist {
-            max-width: 600px;
-            margin: 40px auto 0;
-        }
-
-        .waitlist-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .waitlist-copy {
-            color: #cccccc;
-            margin-bottom: 20px;
-        }
-
-        .waitlist-row {
-            display: flex;
-            gap: 10px;
-        }
-
-        .waitlist-row input[type="email"] {
-            flex: 1;
-            min-width: 0;
-            padding: 14px 16px;
-            font: inherit;
-            color: #ffffff;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid #666;
-            border-radius: 10px;
-        }
-
-        .waitlist-row input[type="email"]::placeholder {
-            color: #aaa;
-        }
-
-        .waitlist-row button {
-            padding: 14px 24px;
-            font: inherit;
-            font-weight: 700;
-            color: #ffffff;
-            background: #e30a0a;
-            border: 0;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-
-        .waitlist-row button:hover {
-            background: #ff2b2b;
-        }
-
-        .waitlist-row button:disabled {
-            opacity: 0.6;
-            cursor: wait;
-        }
-
-        .waitlist input:focus-visible,
-        .waitlist button:focus-visible,
-        .social-links a:focus-visible {
-            outline: 2px solid #ffffff;
-            outline-offset: 2px;
-        }
-
-        .waitlist-hp {
-            position: absolute;
-            left: -9999px;
-        }
-
-        .waitlist-fine {
-            font-size: 0.85rem;
-            color: #999;
-            margin-top: 12px;
-        }
-
-        .waitlist-status {
-            min-height: 1.5em;
-            margin-top: 12px;
-            font-weight: 600;
-        }
-
-        .waitlist-status.error {
-            color: #ff8a8a;
-        }
-
-        .waitlist-status.success {
-            color: #6fe09b;
-            font-size: 1.15rem;
-        }
-
-        .social-links {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 32px;
-        }
-
-        .social-links a {
-            padding: 8px 14px;
-            font-size: 0.9rem;
-            color: #dddddd;
-            text-decoration: none;
-            border: 1px solid #555;
-            border-radius: 999px;
-        }
-
-        .social-links a:hover {
-            color: #ffffff;
-            border-color: #e30a0a;
-        }
-
-        @media (max-width: 520px) {
-            .container {
-                padding: 32px 16px;
-            }
-
-            .waitlist-row {
-                flex-direction: column;
-            }
-        }
-
-        /* Background decoration */
-        .bg-decoration {
-            position: fixed;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.1;
-            z-index: -1;
-            animation: float-bg 20s infinite ease-in-out;
-        }
-
-        .bg-decoration:nth-child(1) {
-            background: #ff0000;
-            top: -100px;
-            left: -100px;
-            animation-delay: 0s;
-        }
-
-        .bg-decoration:nth-child(2) {
-            background: #ff0000;
-            bottom: -100px;
-            right: -100px;
-            animation-delay: 10s;
-        }
-
-        @keyframes float-bg {
-            0%, 100% {
-                transform: translate(0, 0) scale(1);
-            }
-            50% {
-                transform: translate(50px, 50px) scale(1.1);
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fancrd — Your digital fan passport</title>
+  <meta name="description" content="Fancrd - Your digital fan passport. Log every game, rate every venue, collect every badge.">
+  <link rel="icon" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bungee&family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div class="bg-decoration"></div>
-    <div class="bg-decoration"></div>
-
-    <div class="container">
-        <img src="logo.png" alt="Fancrd Logo" class="logo-image">
-        
-        <div class="brand-name">FANCRD</div>
-        
-        <div class="tagline">Visit. Watch it. Fancrd it.</div>
-
-        <div class="construction-container">
-            <div class="construction-icon">🚧</div>
-            <div class="construction-title">Under Construction</div>
-            <div class="construction-subtitle">
-                Your seat. Your card. Log. Rate. Remember.<br>
-                We're building something special for sports fans.
-            </div>
-        </div>
-
-        <section class="waitlist" aria-labelledby="waitlist-title">
-            <h2 class="waitlist-title" id="waitlist-title">Get on the list</h2>
-            <p class="waitlist-copy">Be first to build your Fancrd when we launch with the NFL, college football and MLB.</p>
-            <form id="waitlist-form" novalidate>
-                <div class="waitlist-row">
-                    <input type="email" name="email" placeholder="you@example.com" autocomplete="email" aria-label="Email address" required>
-                    <button type="submit">Join the waitlist</button>
-                </div>
-                <input class="waitlist-hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-            </form>
-            <p class="waitlist-status" id="waitlist-status" role="status"></p>
-            <p class="waitlist-fine">We'll only email you about Fancrd. Unsubscribe anytime.</p>
-        </section>
-
-        <nav class="social-links" aria-label="Fancrd on social media">
-            <a href="https://x.com/Fancrd" target="_blank" rel="noopener">X</a>
-            <a href="https://www.instagram.com/officialfancrd/" target="_blank" rel="noopener">Instagram</a>
-            <a href="https://www.tiktok.com/@officialfancrd" target="_blank" rel="noopener">TikTok</a>
-            <a href="https://www.reddit.com/r/Fancrd/" target="_blank" rel="noopener">Reddit</a>
-            <a href="https://www.facebook.com/profile.php?id=61583319068346" target="_blank" rel="noopener">Facebook</a>
-            <a href="https://bsky.app/profile/fancrd.bsky.social" target="_blank" rel="noopener">Bluesky</a>
-        </nav>
-
-        <div class="coming-soon">
-            Coming Soon • © 2025 Fancrd
-        </div>
+  <div class="preview-bar">Early preview · sample data · accounts and saves stay in this browser only</div>
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="#/" aria-label="Fancrd home">
+        <img src="logo.png" alt="">
+        <span>FANCRD</span>
+      </a>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false">☰</button>
+      <nav class="main-nav" aria-label="Main">
+        <a href="#/profile" data-nav="profile">Profile</a>
+        <a href="#/rankings" data-nav="rankings">Rankings</a>
+        <a href="#/venues" data-nav="venues">Venues</a>
+        <a href="#/passport" data-nav="passport">Passport</a>
+        <span class="nav-auth"></span>
+        <a class="btn btn--primary btn--sm" href="#/log">+ Log</a>
+      </nav>
+      <div class="search">
+        <input type="search" placeholder="Search venues, teams, fans" aria-label="Search">
+        <div class="search__results" hidden></div>
+      </div>
     </div>
-    <script>
-        // Signups go to the "Fancrd Waitlist" Google Form in the officialfancrd account
-        const WAITLIST_FORM_ID = '1FAIpQLSc2kclhHWR9gdtcr-m73pCfFp3fX-11I0VLqllGgjnG2QBAFw';
-        const WAITLIST_EMAIL_ENTRY = 'entry.995342009';
-
-        const form = document.getElementById('waitlist-form');
-        const statusEl = document.getElementById('waitlist-status');
-        const setStatus = (text, kind) => {
-            statusEl.textContent = text;
-            statusEl.className = 'waitlist-status ' + kind;
-        };
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            // Bots fill the hidden field; pretend it worked and store nothing
-            if (form.elements.website.value) {
-                form.hidden = true;
-                setStatus("You're on the list. See you at the game!", 'success');
-                return;
-            }
-            const email = form.elements.email.value.trim();
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                setStatus('Please enter a valid email address.', 'error');
-                return;
-            }
-            if (!WAITLIST_FORM_ID || !WAITLIST_EMAIL_ENTRY) {
-                setStatus("Signups aren't open just yet. Check back soon!", 'error');
-                return;
-            }
-            const button = form.querySelector('button');
-            button.disabled = true;
-            try {
-                // no-cors: Google hides the response, so only network failures are detectable
-                await fetch('https://docs.google.com/forms/d/e/' + WAITLIST_FORM_ID + '/formResponse', {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    body: new URLSearchParams({ [WAITLIST_EMAIL_ENTRY]: email }),
-                });
-                form.hidden = true;
-                setStatus("You're on the list. See you at the game!", 'success');
-            } catch {
-                button.disabled = false;
-                setStatus('That did not go through. Please try again.', 'error');
-            }
-        });
-    </script>
+  </header>
+  <main id="app" class="wrap"></main>
+  <footer class="site-footer">
+    <div class="wrap footer-row">
+      <span>© 2026 Fancrd · Visit. Watch it. Fancrd it.</span>
+      <nav class="social-links" aria-label="Fancrd on social media">
+        <a href="https://x.com/Fancrd" target="_blank" rel="noopener">X</a>
+        <a href="https://www.instagram.com/officialfancrd/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.tiktok.com/@officialfancrd" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://www.reddit.com/r/Fancrd/" target="_blank" rel="noopener">Reddit</a>
+        <a href="https://www.facebook.com/profile.php?id=61583319068346" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://bsky.app/profile/fancrd.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+      </nav>
+      <button class="link" id="reset-preview" type="button">Reset preview data</button>
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>
