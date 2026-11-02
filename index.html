@@ -20,7 +20,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
         .container {
@@ -136,6 +136,128 @@
             }
         }
 
+        /* Waitlist */
+        .waitlist {
+            max-width: 600px;
+            margin: 40px auto 0;
+        }
+
+        .waitlist-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .waitlist-copy {
+            color: #cccccc;
+            margin-bottom: 20px;
+        }
+
+        .waitlist-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .waitlist-row input[type="email"] {
+            flex: 1;
+            min-width: 0;
+            padding: 14px 16px;
+            font: inherit;
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid #666;
+            border-radius: 10px;
+        }
+
+        .waitlist-row input[type="email"]::placeholder {
+            color: #aaa;
+        }
+
+        .waitlist-row button {
+            padding: 14px 24px;
+            font: inherit;
+            font-weight: 700;
+            color: #ffffff;
+            background: #e30a0a;
+            border: 0;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .waitlist-row button:hover {
+            background: #ff2b2b;
+        }
+
+        .waitlist-row button:disabled {
+            opacity: 0.6;
+            cursor: wait;
+        }
+
+        .waitlist input:focus-visible,
+        .waitlist button:focus-visible,
+        .social-links a:focus-visible {
+            outline: 2px solid #ffffff;
+            outline-offset: 2px;
+        }
+
+        .waitlist-hp {
+            position: absolute;
+            left: -9999px;
+        }
+
+        .waitlist-fine {
+            font-size: 0.85rem;
+            color: #999;
+            margin-top: 12px;
+        }
+
+        .waitlist-status {
+            min-height: 1.5em;
+            margin-top: 12px;
+            font-weight: 600;
+        }
+
+        .waitlist-status.error {
+            color: #ff8a8a;
+        }
+
+        .waitlist-status.success {
+            color: #6fe09b;
+            font-size: 1.15rem;
+        }
+
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 32px;
+        }
+
+        .social-links a {
+            padding: 8px 14px;
+            font-size: 0.9rem;
+            color: #dddddd;
+            text-decoration: none;
+            border: 1px solid #555;
+            border-radius: 999px;
+        }
+
+        .social-links a:hover {
+            color: #ffffff;
+            border-color: #e30a0a;
+        }
+
+        @media (max-width: 520px) {
+            .container {
+                padding: 32px 16px;
+            }
+
+            .waitlist-row {
+                flex-direction: column;
+            }
+        }
+
         /* Background decoration */
         .bg-decoration {
             position: fixed;
@@ -192,9 +314,78 @@
             </div>
         </div>
 
+        <section class="waitlist" aria-labelledby="waitlist-title">
+            <h2 class="waitlist-title" id="waitlist-title">Get on the list</h2>
+            <p class="waitlist-copy">Be first to build your Fancrd when we launch with the NFL, college football and MLB.</p>
+            <form id="waitlist-form" novalidate>
+                <div class="waitlist-row">
+                    <input type="email" name="email" placeholder="you@example.com" autocomplete="email" aria-label="Email address" required>
+                    <button type="submit">Join the waitlist</button>
+                </div>
+                <input class="waitlist-hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+            </form>
+            <p class="waitlist-status" id="waitlist-status" role="status"></p>
+            <p class="waitlist-fine">We'll only email you about Fancrd. Unsubscribe anytime.</p>
+        </section>
+
+        <nav class="social-links" aria-label="Fancrd on social media">
+            <a href="https://x.com/Fancrd" target="_blank" rel="noopener">X</a>
+            <a href="https://www.instagram.com/officialfancrd/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.tiktok.com/@officialfancrd" target="_blank" rel="noopener">TikTok</a>
+            <a href="https://www.reddit.com/r/Fancrd/" target="_blank" rel="noopener">Reddit</a>
+            <a href="https://www.facebook.com/profile.php?id=61583319068346" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://bsky.app/profile/fancrd.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+        </nav>
+
         <div class="coming-soon">
             Coming Soon • © 2025 Fancrd
         </div>
     </div>
+    <script>
+        // Signups go to the "Fancrd Waitlist" Google Form in the officialfancrd account
+        const WAITLIST_FORM_ID = '1FAIpQLSc2kclhHWR9gdtcr-m73pCfFp3fX-11I0VLqllGgjnG2QBAFw';
+        const WAITLIST_EMAIL_ENTRY = 'entry.995342009';
+
+        const form = document.getElementById('waitlist-form');
+        const statusEl = document.getElementById('waitlist-status');
+        const setStatus = (text, kind) => {
+            statusEl.textContent = text;
+            statusEl.className = 'waitlist-status ' + kind;
+        };
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            // Bots fill the hidden field; pretend it worked and store nothing
+            if (form.elements.website.value) {
+                form.hidden = true;
+                setStatus("You're on the list. See you at the game!", 'success');
+                return;
+            }
+            const email = form.elements.email.value.trim();
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                setStatus('Please enter a valid email address.', 'error');
+                return;
+            }
+            if (!WAITLIST_FORM_ID || !WAITLIST_EMAIL_ENTRY) {
+                setStatus("Signups aren't open just yet. Check back soon!", 'error');
+                return;
+            }
+            const button = form.querySelector('button');
+            button.disabled = true;
+            try {
+                // no-cors: Google hides the response, so only network failures are detectable
+                await fetch('https://docs.google.com/forms/d/e/' + WAITLIST_FORM_ID + '/formResponse', {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: new URLSearchParams({ [WAITLIST_EMAIL_ENTRY]: email }),
+                });
+                form.hidden = true;
+                setStatus("You're on the list. See you at the game!", 'success');
+            } catch {
+                button.disabled = false;
+                setStatus('That did not go through. Please try again.', 'error');
+            }
+        });
+    </script>
 </body>
 </html>
